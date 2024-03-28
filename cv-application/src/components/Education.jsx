@@ -1,49 +1,63 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function Education(){
-    const [school, setSchool] = useState('');
-    const [degree, setDegree] = useState('');
-    const [location, setLocation] = useState('');
-    const [date, setDate] = useState(null);
+export default function Education({ onSubmit }) {
 
-    return(
+    const [educationData, setEducationData] = useState({
+        school: '',
+        degree: '',
+        grade: '',
+        date: ''
+    })
+
+    const handleInputChange = (e) => {
+        setEducationData({
+            ...educationData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(educationData);
+    };
+
+    return (
         <div>
-            <div>
-                <label htmlFor="school name">School Name:</label>
-            <input
-                type="text"
-                value={school}
-                onChange={(event) => setSchool(event.target.value)}
-                placeholder="Name"
-            />
-            </div>
-            <div>
-                <label htmlFor="degree">Degree:</label>
-            <input
-                type="text"
-                value={degree}
-                onChange={(event) => setDegree(event.target.value)}
-                placeholder="B.Sc Information Science"
-            />
-            </div>
-            <div>
-                <label htmlFor="location">Location:</label>
-            <input
-                type="text"
-                value={location}
-                onChange={(event) => setLocation(event.target.value)}
-                placeholder="Lagos, Nigeria"
-            />
-            </div>
-            <div>
-                <label htmlFor="date">Date of Graduation:</label>
-            <input
-                type="date"
-                value={date}
-                onChange={(event) => setDate(event.target.value)}
-                placeholder="phone number"
-            />
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="education-form">
+                    <div>
+                        <label>School: </label>
+                        <input type="text" id="textbox" name="school" value={educationData.school} onChange={handleInputChange}
+                        placeholder="Pan Atlantic University"/>
+                    </div>
+                    <div>
+                        <label>Degree Obtained: </label>
+                        <input type="text" id="textbox" name="degree" value={educationData.degree} onChange={handleInputChange}
+                            placeholder="B.Sc Information Science"
+                        />
+                    </div>
+                    <div>
+                        <label>Grade: </label>
+                        <input type="text" id="textbox" name="grade" value={educationData.location} onChange={handleInputChange}
+                            placeholder="First Class"
+                        />
+                    </div>
+                    <div>
+                        <label>Gradution Date: </label>
+                        <input type="date" id="textbox" name="date" value={educationData.date} onChange={handleInputChange}
+                            placeholder="Date"
+                        />
+                    </div>
+                </div>
+                <div className="button">
+                    <button type="submit">Save</button>
+                    <button type="submit">Edit</button>
+                </div>
+
+
+            </form>
+
         </div>
     )
 

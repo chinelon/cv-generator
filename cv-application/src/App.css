@@ -2,22 +2,76 @@
   max-width: 1280px;
   margin: 0;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 .nav{
+  max-width: 400px;
   background-color: rgb(221, 198, 168);
-  max-width: 300px;
   padding: 20px;
+}
+
+.cv{
+  background-color: white;
+  /**max-width: 900px;*/
+  padding: 50px;
+  box-shadow: 0px 5px 5px black;
+  width: 800px;
+}
+
+.flex-container{
+  display: flex;
+  gap: 50px;
+}
+
+.main{
+  display: flex;
+  gap: 30px;
+}
+
+.general-form{
+display: flex;
+flex-direction: column;
+}
+
+.professional-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.education-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.general-form, .professional-form, .education-form, .skill{
+gap: 20px;
+background-color: antiquewhite;
+box-shadow: 0px 0px 2px black inset;
+padding: 10px;
+border-radius: 10px;
+}
+
+.button{
+  margin-top: 10px;
+}
+button{
+  margin-left: 10px;
+}
+.general-form, .professional-form, .education-form, input{
+
+}
+.general-main{
+  display: flex;
+  flex-direction: column;
+}
+
+#textbox{
+  height: 20px;
+border-radius: 10px;
+border: solid 0.5px black;
+padding: 5px;
+
+}
+
+.edu-grid{
+  display: grid;
+  grid-template-columns: 600px 1fr;
 }
