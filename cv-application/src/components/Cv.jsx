@@ -13,6 +13,14 @@ export default function Cv({ generalData, educationData, professionalData, skill
                 <h3>Objective:</h3>
                 <p>{generalData.objective}</p>
 
+                <h2>Work Experience</h2>
+                <p>{professionalData.company}</p>
+                <p>{professionalData.position}</p>
+                <p>{professionalData.startDate} to {professionalData.endDate}</p>
+                <h3>Responsibilites: </h3>
+                <p>&#x2022; {professionalData.responsibilities}</p>
+
+
                 <h2>Education</h2>
                 <div className="edu-grid">
                     <p>{educationData.school}</p>
@@ -21,19 +29,11 @@ export default function Cv({ generalData, educationData, professionalData, skill
                     <p>{educationData.grade}</p>
                 </div>
 
-
-
-                <h2>Work Experience</h2>
-                <p>{professionalData.company}</p>
-                <p>{professionalData.position}</p>
-                <p>{professionalData.startDate} to {professionalData.endDate}</p>
-                <h3>Responsibilites: </h3>
-                <p>&#x2022; {professionalData.responsibilities}</p>
-
                 <h2>Skills</h2>
                 <p>&#x2022; {skills.skill}</p>
-
             </div>
+            <br />
+            <a href="">Click here to download pdf format!</a>
         </>
     );
 }
