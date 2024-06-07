@@ -17,6 +17,10 @@ export default function Skills({ onSubmit }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(skills);
+
+        setSkills({
+            skill: ""
+        });
     };
     return (
         <div>

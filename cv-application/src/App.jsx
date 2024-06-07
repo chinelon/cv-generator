@@ -52,17 +52,9 @@ function App() {
     date: ''
   });
 
-  const [professionalData, setProfessionalData] = useState({
-    company: '',
-    position: '',
-    responsibilities: '',
-    startDate: '',
-    endDate: ''
-  });
+  const [professionalData, setProfessionalData] = useState([]);
 
-  const [skills, setSkills] = useState({
-    skill: ''
-  });
+  const [skills, setSkills] = useState([]);
 
   const handleGeneralInfoSubmit = (data) => {
     setGeneralData(data);
@@ -73,11 +65,11 @@ function App() {
   };
 
   const handleProfessionalSubmit = (data) => {
-    setProfessionalData(data);
+    setProfessionalData([...professionalData, data]);
   };
 
   const handleSkillsSubmit = (data) => {
-    setSkills(data);
+    setSkills([...skills, data]);
   };
 
   return (

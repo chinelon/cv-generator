@@ -1,12 +1,25 @@
 /* eslint-disable react/prop-types */
-//import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 export default function Cv({ generalData, educationData, professionalData, skills }) {
-    console.log(generalData, educationData, professionalData, skills);
+    const generatePDF = () => {
+        const input = document.getElementById('cv');
+        html2canvas(input)
+            .then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 0, 0);
+                pdf.save("cv.pdf");
+            });
+    };
+
     return (
         <>
             <h2>CV</h2>
-            <div className="cv">
+            <div id="cv" className="cv">
                 <h1>{generalData.name}</h1>
                 <p>Email: {generalData.email}</p>
                 <p>Phone: {generalData.phone}</p>
@@ -14,12 +27,19 @@ export default function Cv({ generalData, educationData, professionalData, skill
                 <p>{generalData.objective}</p>
 
                 <h2>Work Experience</h2>
-                <p>{professionalData.company}</p>
-                <p>{professionalData.position}</p>
-                <p>{professionalData.startDate} to {professionalData.endDate}</p>
-                <h3>Responsibilites: </h3>
-                <p>&#x2022; {professionalData.responsibilities}</p>
-
+                {professionalData.map((info, index) => (
+                    <div key={index}>
+                        <h4>{info.company}</h4>
+                        <h4>{info.position}</h4>
+                        <p>{info.startDate} to {info.endDate}</p>
+                        <h4>Responsibilities: </h4>
+                        <ul>
+                            {info.responsibilities.map((responsibility, idx) => (
+                                <li key={idx}>&#x2022; {responsibility}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
 
                 <h2>Education</h2>
                 <div className="edu-grid">
@@ -28,12 +48,15 @@ export default function Cv({ generalData, educationData, professionalData, skill
                     <p>{educationData.degree}</p>
                     <p>{educationData.grade}</p>
                 </div>
-
                 <h2>Skills</h2>
-                <p>&#x2022; {skills.skill}</p>
+                {skills.map((info, index) => (
+                    <div key={index}>
+                        <p>&#x2022; {info.skill}</p>
+                    </div>
+                ))}
             </div>
             <br />
-            <a href="">Click here to download pdf format!</a>
+            <button onClick={generatePDF}>Click here to download pdf format!</button>
         </>
     );
 }
@@ -53,7 +76,7 @@ Cv.defaultProps = {
     professionalData: {
         company: 'Sample Company',
         position: 'Software Engineer',
-        responsibilities: 'Sample responsibilities...',
+        responsibilities: ['Sample responsibility 1', 'Sample responsibility 2'],
         startDate: 'June 2014',
         endDate: 'Present'
     },
